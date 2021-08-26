@@ -1,52 +1,36 @@
 const express = require('express');
 const router = express.Router();
 
-const AuthController = require('../controllers/authController');
-/* const BrandController = require('../controllers/brandController');
-const ColorController = require('../controllers/colorController');
-const CarController = require('../controllers/carController');
-const CarRentController = require('../controllers/carRentController');
-const PriceRentController = require('../controllers/priceRentController');
-const carController = require('../controllers/carController');
-const PaymentController = require('../controllers/paymentController'); */
+const CityController = require('../controllers/cityController');
+const ProfesorController = require('../controllers/profesorController');
+const GroupController = require('../controllers/groupController');
+const StudentController = require('../controllers/studentController');
 
-//Middlewares
-const auth = require('../middlewares/auth');
-const admin = require("../middlewares/admin");
 
-// Auth
-router.post('/api/signin', AuthController.signIn);
-router.post('/api/signup', AuthController.signUp);
+// City CRUD
+router.post('/api/cities', CityController.addCity);
+router.get('/api/cities', CityController.showCities);
+router.put('/api/cities/:uuid', CityController.updateCity);
+router.delete('/api/cities/:uuid', CityController.deleteCity);
 
-// Colors CRUD
-/* router.post('/api/colors', auth, admin, ColorController.addColor);
-router.get('/api/colors', auth, ColorController.showColors);
-router.put('/api/colors/:uuid', auth, admin, ColorController.updateColor);
-router.delete('/api/colors/:uuid', auth, admin, ColorController.deleteColor); */
+// Profesor CRUD
+router.post('/api/profesors', ProfesorController.addProfesor);
+router.get('/api/profesors', ProfesorController.showProfesors);
+router.put('/api/profesors/:uuid', ProfesorController.updateProfesor);
+router.delete('/api/profesors/:uuid', ProfesorController.deleteProfesor);
 
-// Brands CRUD
-/* router.post('/api/brands', auth, admin, BrandController.addBrand);
-router.get('/api/brands', BrandController.showBrands);
-router.put('/api/brands/:auth,uuid', auth, admin, BrandController.updateBrand);
-router.delete('/api/brands/:uuid', auth, admin, BrandController.deleteBrand); */
 
-// Cars CRUD
-/* router.post('/api/cars',auth, CarController.addCar);
-router.get('/api/cars', CarController.showCars);
-router.get('/api/cars/:uuid', CarController.showCar);
-router.put('/api/cars/:uuid',auth, admin, carController.updateCar);
-router.delete('/api/cars/:uuid',auth, admin, carController.deletCar); */
+// Group CRUD
+router.post('/api/groups', GroupController.addGroup);
+router.get('/api/groups', GroupController.showGroups);
+router.put('/api/groups/:uuid', GroupController.updateGroup);
+router.delete('/api/groups/:uuid', GroupController.deleteGroup);
 
-//Rent
-/* router.post('/api/rents',auth, CarRentController.addCarRent); */
+// Student CRUD
+router.post('/api/students', StudentController.addStudent);
+router.get('/api/students', StudentController.showStudents);
+router.put('/api/students/:uuid', StudentController.updateStudent);
+router.delete('/api/students/:uuid', StudentController.deleteStudent);
 
-//PriceRent
-/* router.post('/api/price', auth, admin, PriceRentController.addPriceRent);
-router.get('/api/price', auth, admin, PriceRentController.showPriceRent);
-router.put('/api/price/:uuid',auth, admin, PriceRentController.updatePriceRent);
-router.delete('/api/price/:uuid',auth, admin, PriceRentController.deletePriceRent); */
-
-//Payment
-/* router.post('/api/payment',auth, PaymentController.stripePay); */
 
 module.exports = router;

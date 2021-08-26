@@ -1,7 +1,8 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../config/db');
+const Profesor = require('./Profesor');
 
-const Brands = db.define('Brands', {
+const Group = db.define('Group', {
 
     id :{
         type: DataTypes.INTEGER,
@@ -13,9 +14,6 @@ const Brands = db.define('Brands', {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            isAlpha: {
-                msg: "Name must containg only letters"
-            },
             len: {
                 args: [2, 255],
                 msg: "The name must contain minimun 2 characters"
@@ -38,7 +36,8 @@ const Brands = db.define('Brands', {
         defaultValue: Sequelize.UUIDV4 
       }
   },{
-    tableName: 'Brands'
+    tableName: 'Group'
   });
 
-  module.exports = Brands;
+  Group.belongsTo(Profesor);
+  module.exports = Group;

@@ -1,9 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../config/db');
-const Colors = require('./Colors');
-const Brands = require('./Brands');
 
-const Cars = db.define('Cars', {
+const Profesor = db.define('Profesor', {
 
     id :{
         type: DataTypes.INTEGER,
@@ -11,19 +9,15 @@ const Cars = db.define('Cars', {
         autoIncrement: true,
     },
 
-    price: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
-    },
-
-    possession_years: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-
-    image: {
+    name: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull: false,
+        validate: {
+            len: {
+                args: [2, 255],
+                msg: "The name must contain minimun 2 characters"
+            }
+        }
     },
 
     updatedAt: {
@@ -43,9 +37,7 @@ const Cars = db.define('Cars', {
         defaultValue: Sequelize.UUIDV4 
       }
   },{
-    tableName: 'Cars'
+    tableName: 'Profesor'
   });
 
-  Cars.belongsTo(Colors);
-  Cars.belongsTo(Brands);
-  module.exports = Cars;
+  module.exports = Profesor;
